@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let employees=[];
+        function addEmp(id,name,salary=true){
+            employees.push({id,name,salary})
+            console.log("Employees added",employees);
+        }
+        addEmp(1,"Dharsh",2000)
+        addEmp(2,"Dheekshi",3000)
+        addEmp(3,"Joe",4000)
+        function updateEmp(id,newDetail){
+            const emp=employees.find(e=> e.id == id)
+            if(emp){
+                Object.assign(emp, newDetail);
+                console.log("Updated",employees)
+            }else{
+                console.log("employee not found")
+            }
+        }
+        updateEmp(4, {name:"Akashaya"})
+        function removeEmp(id) {
+            const index = employees.findIndex(e => e.id === id);
+            if (index !== -1) {
+                employees.splice(index, 1);
+                console.log("employee removed", employees);
+            } else{
+                console.log("employee not found");
+            }
+        }
+        removeEmp(1);
+        function totalSalary(){
+            const total=employees.reduce((sum,emp) =>sum+emp.salary , 0);
+            console.log("total salary is",total);
+        }
+        totalSalary()
+        </script>
+        </body>
+        </html>
