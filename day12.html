@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // A Set is a collection of unique values. It automatically removes duplicates.
+        // Syntax:
+        // let mySet = new Set([iterable]);
+
+        let email = new Set([]);
+        email.add("js@gmail.com");
+        email.add("java@gmail.com");
+        email.add("python@gmail.com");
+        console.log(email);
+
+        // Uncomment to test delete and clear methods
+        // email.delete("js@gmail.com");
+        // console.log(email);
+        // email.clear();
+        // console.log(email);
+
+        for (let mailId of email) {
+            console.log(mailId);
+        }
+
+        email.forEach(x => {
+            console.log(x);  // Changed from console.log(email) to console.log(x) to print each email
+        });
+
+        // Role-based access using Set
+        let adminpermission = new Set(["read", "write", "delete"]);
+        let userpermission = new Set(["read"]);
+
+        function hasPermission(role, permission) {
+            return role.has(permission);
+        }
+
+        console.log(hasPermission(adminpermission, "delete")); // true
+        console.log(hasPermission(userpermission, "delete"));  // false
+
+        // Union, intersection, difference using sets
+        let setA = new Set([1, 2, 3, 4, 5, 1]); // duplicate 1 will be ignored
+        let setB = new Set([6, 7, 8, 9, 2, 10]);
+
+        // Union
+        let union = new Set([...setA, ...setB]);
+        console.log(union);
+
+        // Intersection
+        let intersection = new Set([...setA].filter(x => setB.has(x)));
+        console.log(intersection);
+
+        // Difference (elements in setA not in setB)
+        let difference = new Set([...setA].filter(x => !setB.has(x)));
+        console.log(difference);
+        let user1={name:"javascript"};
+        let user2={name:"python"};
+        // let map=new Map();
+        let map=new WeakMap();
+        map.set(user1,"welcome");
+        map.set(user2,"hai python");
+        console.log(map);
+        for(let message of map.values()){
+            console.log(message);
+        }
+        </script>
+</body>
+</html>
