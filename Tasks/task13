@@ -1,0 +1,38 @@
+[
+  {"name":"Laptop","price":50000,"description":"High performance laptop"},
+  {"name":"Phone","price":20000,"description":"Smartphone with good camera"},
+  {"name":"Headphones","price":1500,"description":"Wireless headphones"}
+]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Catalog</title>
+</head>
+<body>
+
+<h2>Product Catalog</h2>
+<div id="catalog"></div>
+<div id="error" style="color:red;"></div>
+
+<script>
+const catalog = document.getElementById("catalog");
+const errorDiv = document.getElementById("error");
+
+async function loadProducts(){
+  try{
+    const res = await fetch("products.json");
+    if(!res.ok) throw new Error("Network error");
+    const products = await res.json();
+    catalog.innerHTML = products.map(p=>`<h3>${p.name} - ₹${p.price}</h3><p>${p.description}</p>`).join("");
+  } catch(e){
+    errorDiv.textContent = "Failed to load products: " + e.message;
+  }
+}
+
+loadProducts();
+</script>
+
+</body>
+</html>
